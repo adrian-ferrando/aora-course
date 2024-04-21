@@ -1,14 +1,13 @@
-import { StatusBar } from "expo-status-bar";
-import { Image, ScrollView, Text, View } from "react-native";
-import { Redirect, router } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 import { images } from "../constants";
+import { StatusBar } from "expo-status-bar";
 import CustomButton from "../components/CustomButton";
+import { Image, ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <SafeAreaView className="bg-primary h-full">
-      <StatusBar backgroundColor="#161622" style="light" />
       <ScrollView contentContainerStyle={{ height: "100%" }}>
         <View className="w-full justify-center items-center h-full px-4">
           <Image
@@ -48,6 +47,7 @@ export default function App() {
           />
         </View>
       </ScrollView>
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 }
