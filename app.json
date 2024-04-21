@@ -14,7 +14,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pimpa.aora"
     },
     "android": {
       "adaptiveIcon": {

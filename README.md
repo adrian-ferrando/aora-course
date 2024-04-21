@@ -1,5 +1,9 @@
 # Instructions
 
+## Video - Course
+
+https://www.youtube.com/watch?v=ZBCUegTZF7M
+
 ## Basic dependencies
 
 https://docs.expo.dev/router/installation/#create-an-expo-project
@@ -76,3 +80,7 @@ module.exports = function (api) {
   };
 };
 ```
+
+## Backend
+
+appwrite
