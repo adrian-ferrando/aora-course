@@ -81,6 +81,18 @@ module.exports = function (api) {
 };
 ```
 
+### Animations
+
+```zsh
+npm install react-native-animatable
+```
+
+### Reproduce video
+
+```zsh
+npm install expo-av
+```
+
 ## Backend
 
 appwrite
