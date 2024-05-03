@@ -1,10 +1,14 @@
-import { Tabs } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Redirect, Tabs } from "expo-router";
+import { Image, Text, View } from "react-native";
+
 import { icons } from "../../constants";
-import { View, Text, Image } from "react-native";
+import { Loader } from "../../components";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
-    <View className="items-center justify-center gap-2">
+    <View className="flex items-center justify-center gap-2">
       <Image
         source={icon}
         resizeMode="contain"
@@ -21,19 +25,23 @@ const TabIcon = ({ icon, color, name, focused }) => {
   );
 };
 
-const TabsLayout = () => {
+const TabLayout = () => {
+  const { loading, isLogged } = useGlobalContext();
+
+  if (!loading && !isLogged) return <Redirect href="/sign-in" />;
+
   return (
     <>
       <Tabs
         screenOptions={{
-          tabBarShowLabel: false,
           tabBarActiveTintColor: "#FFA001",
           tabBarInactiveTintColor: "#CDCDE0",
+          tabBarShowLabel: false,
           tabBarStyle: {
-            heigh: 84,
+            backgroundColor: "#161622",
             borderTopWidth: 1,
             borderTopColor: "#232533",
-            backgroundColor: "#161622",
+            height: 84,
           },
         }}
       >
@@ -44,9 +52,9 @@ const TabsLayout = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                name="Home"
-                color={color}
                 icon={icons.home}
+                color={color}
+                name="Home"
                 focused={focused}
               />
             ),
@@ -59,14 +67,15 @@ const TabsLayout = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                name="Bookmark"
-                color={color}
                 icon={icons.bookmark}
+                color={color}
+                name="Bookmark"
                 focused={focused}
               />
             ),
           }}
         />
+
         <Tabs.Screen
           name="create"
           options={{
@@ -74,9 +83,9 @@ const TabsLayout = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                name="Create"
-                color={color}
                 icon={icons.plus}
+                color={color}
+                name="Create"
                 focused={focused}
               />
             ),
@@ -89,17 +98,20 @@ const TabsLayout = () => {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                name="Profile"
-                color={color}
                 icon={icons.profile}
+                color={color}
+                name="Profile"
                 focused={focused}
               />
             ),
           }}
         />
       </Tabs>
+
+      <Loader isLoading={loading} />
+      <StatusBar backgroundColor="#161622" style="light" />
     </>
   );
 };
 
-export default TabsLayout;
+export default TabLayout;
